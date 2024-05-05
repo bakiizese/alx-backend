@@ -32,9 +32,14 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-            ''' return list of list of csv '''
-            g = Server.dataset(self)
-            #ls = []
-            #for i in self.__dataset:
-             #   ls.append(i)
-            return(type(g))
+        ''' return list of list of csv '''
+        f = self.dataset()
+        assert isinstance(page, int)
+        assert isinstance(page_size, int)
+        assert page > 0
+        assert page_size > 0
+        idx = index_range(page, page_size)
+
+        a = int(idx[0])
+        b = int(idx[1])
+        return f[a: b]
