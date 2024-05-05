@@ -39,9 +39,9 @@ class Server:
         assert page > 0
         assert page_size > 0
         idx = index_range(page, page_size)
-
+        print(idx)
         a = int(idx[0])
         b = int(idx[1])
-        if b > 19419:
+        if a > 19419:
             return []
         return f[a: b]
