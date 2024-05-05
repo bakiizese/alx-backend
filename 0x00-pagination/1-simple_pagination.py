@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 import csv
 import math
-from typing import List
+from typing import List, Tuple
 '''simple heper pagination '''
 
 
-def index_range(page, page_size):
+def index_range(page: int, page_size: int) -> Tuple:
     ''' return tuple '''
-    a = page * page_size
-    b = a - page_size
+    a: int = page * page_size
+    b: int = a - page_size
     return (b, a)
 
 
@@ -37,11 +37,11 @@ class Server:
         assert isinstance(page_size, int)
         assert page > 0
         assert page_size > 0
-        f = self.dataset()
-        idx = index_range(page, page_size)
-        a = int(idx[0])
-        b = int(idx[1])
+        f: List = self.dataset()
+        idx: Tuple = index_range(page, page_size)
+        a: int = int(idx[0])
+        b: int = int(idx[1])
         if b > 19419:
             return []
-        fs = f[a: b]
+        fs: List = f[a: b]
         return fs
