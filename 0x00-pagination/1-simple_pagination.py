@@ -33,14 +33,15 @@ class Server:
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         ''' return list of list of csv '''
-        f = self.dataset()
         assert isinstance(page, int)
         assert isinstance(page_size, int)
         assert page > 0
         assert page_size > 0
+        f = self.dataset()
         idx = index_range(page, page_size)
         a = int(idx[0])
         b = int(idx[1])
         if b > 19419:
             return []
-        return f[a: b]
+        fs = f[a: b]
+        return fs
