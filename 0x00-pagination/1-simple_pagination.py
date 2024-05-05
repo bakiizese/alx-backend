@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
+'''simple heper pagination '''
 import csv
 import math
 from typing import List, Tuple
-'''simple heper pagination '''
 
 
 def index_range(page: int, page_size: int) -> Tuple:
