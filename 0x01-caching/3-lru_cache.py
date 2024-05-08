@@ -1,56 +1,38 @@
 #!/usr/bin/env python3
-''' LIFO caching algorithms '''
+''' lru caching '''
 from base_caching import BaseCaching
+from collections import OrderedDict
 
 
 class LRUCache(BaseCaching):
-    ''' inhering from basecahing class '''
+    ''' LRU cache '''
     def __init__(self):
+        ''' init '''
         super().__init__()
-        self.ls = []
+        self.access_order = OrderedDict()
 
     def put(self, key, item):
-        ''' insert key and items to cache_data else
-            pass if key or items is none and discard
-            from the dic if NO dic is > Max_tems '''
-        if key is not None and item is not None:
-            if key in self.ls and key not in self.cache_data:
-                self.ls.remove(key)
-                self.ls.append(key)
-            elif key not in self.cache_data:
-                self.ls.append(key)
-            ky = self.ls[0]
-            ky_s = str(ky[0])
+        ''' insert a key and val '''
+        if key is None or item is None:
+            return
 
-            if len(self.cache_data) == self.MAX_ITEMS:
-                if key in self.cache_data:
-                    if self.cache_data[key] == item:
-                        pass
-                    else:
-                        self.cache_data[key] = item
-                else:
-                    print(f'DISCARD: {ky_s}')
-                    self.cache_data.pop(ky_s)
-                    self.cache_data[key] = item
-            else:
-                self.cache_data[key] = item
+        if key in self.cache_data:
+            del self.access_order[key]
+        elif len(self.cache_data) >= self.MAX_ITEMS:
+            oldest_key = next(iter(self.access_order))
+            print(f'DISCARD: {oldest_key}')
+            del self.cache_data[oldest_key]
+            del self.access_order[oldest_key]
 
-            if len(self.ls) > 4:
-                del self.ls[0]
+        self.cache_data[key] = item
+        self.access_order[key] = None
 
     def get(self, key):
-        ''' retriev val by key '''
-        if not key:
+        ''' retriev a key '''
+        if key not in self.cache_data:
             return None
-        try:
-            self.cache_data[key]
-        except Exception:
-            return None
-        if key in self.ls:
-            self.ls.remove(key)
-            self.ls.append(key)
-        else:
-            self.ls.append(key)
-        if len(self.ls) > 4:
-            del self.ls[0]
+
+        del self.access_order[key]
+        self.access_order[key] = None
+
         return self.cache_data[key]
