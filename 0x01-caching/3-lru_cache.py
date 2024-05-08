@@ -13,10 +13,10 @@ class LRUCache(BaseCaching):
         ''' insert key and items to cache_data else
             pass if key or items is none and discard
             from the dic if NO dic is > Max_tems '''
-        if key in self.ls:
+        if key in self.ls and key not in self.cache_data:
             self.ls.remove(key)
             self.ls.append(key)
-        else:
+        elif key not in self.cache_data:
             self.ls.append(key)
 
         ky = self.ls[0]
