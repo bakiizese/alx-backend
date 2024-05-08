@@ -26,11 +26,9 @@ class FIFOCache(BaseCaching):
     def get(self, key):
         ''' retriev val by key '''
         if not key:
-            print('s')
             return None
         try:
             self.cache_data[key]
         except Exception:
-            print('e')
             return None
         return self.cache_data[key]
