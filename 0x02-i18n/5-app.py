@@ -2,6 +2,7 @@
 '''  simple flask app '''
 from flask import Flask, g, session, render_template, request
 from flask_babel import Babel
+from typing import Dict
 
 
 class Config:
@@ -23,7 +24,7 @@ users = {
 }
 
 
-def get_user(find_id):
+def get_user(find_id) -> Dict:
     if find_id:
         try:
             find_id = int(find_id)
