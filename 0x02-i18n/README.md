@@ -1,0 +1,1 @@
+i18n_internalization and i10n_localization by flask_babel
