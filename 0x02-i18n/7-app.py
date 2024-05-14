@@ -63,23 +63,23 @@ def get_locale():
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
-@babel.timezoneselector
+
+@babel.timezone_selector
 def get_timezone():
     ''' timezone selector '''
     tzone = request.args.get('timezone', None)
     if tzone:
         try:
-            return timezone(tzone).zone
+            tzone = timezone(tzone)
         except pytz.exceptions.UnknownTimeZoneError:
             pass
-    if g.user:
+    elif g.user:
         try:
             tzone = g.user.get('timezone')
-            return timezone(tzone).zone
+            tzone = timezone(tzone)
         except pytz.exceptions.UnknownTimeZoneError:
             pass
-    df = app.config['BABEL_DEFAULT_TIMEZONE']
-    return df
+    return tzone
 
 
 @app.route('/', strict_slashes=False)
