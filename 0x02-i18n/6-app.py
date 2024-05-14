@@ -67,7 +67,7 @@ def index() -> str:
     user_name = None
     if hasattr(g, 'user'):
         user_name = g.user['name']
-    return render_template('5-index.html', user_name=user_name)
+    return render_template('6-index.html', user_name=user_name)
 
 
 if __name__ == '__main__':
