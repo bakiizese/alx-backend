@@ -25,6 +25,7 @@ users = {
 
 
 def get_user(find_id) -> Dict:
+    ''' get user from users '''
     if find_id:
         try:
             find_id = int(find_id)
@@ -37,6 +38,7 @@ def get_user(find_id) -> Dict:
 
 @app.before_request
 def before_request():
+    ''' run before all funcs '''
     login_id = request.args.get('login_as')
     if login_id:
         us = get_user(login_id)
