@@ -2,7 +2,7 @@
 '''  simple flask app '''
 from flask import Flask, render_template
 from flask_babel import Babel
-from typing import Classvar
+from typing import ClassVar
 
 
 class Config:
