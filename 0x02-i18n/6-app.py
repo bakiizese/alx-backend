@@ -54,7 +54,7 @@ def get_locale():
     if locale and locale in Config.LANGUAGES:
         return locale
     elif hasattr(g, 'user'):
-        if g.user['locale']:
+        if g.user['locale'] and g.user['locale'] in Config.LANGUAGES:
             return g.user['locale']
     elif hlocale:
         return hlocale
