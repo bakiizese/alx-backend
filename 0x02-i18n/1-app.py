@@ -2,13 +2,12 @@
 '''  simple flask app '''
 from flask import Flask, render_template
 from flask_babel import Babel
-from typing import ClassVar
 
 
 class Config:
-    LANGUAGES: ClassVar[list[str]] = ["en", "fr"]
-    BABEL_DEFAULT_LOCALE: ClassVar[str] = 'en'
-    BABEL_DEFAULT_TIMEZONE: ClassVar[str] = 'UTC'
+    LANGUAGES = ["en", "fr"]
+    BABEL_DEFAULT_LOCALE = 'en'
+    BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
 app = Flask(__name__)
